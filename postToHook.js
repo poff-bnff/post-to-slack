@@ -3,7 +3,7 @@ const fs = require('fs');
 
 
 
-function POSTtoSlack (userId, payload){
+function POSTtoSlack (data){
 
     let options = {
         'method': 'POST',
@@ -33,17 +33,7 @@ function POSTtoSlack (userId, payload){
         });
     });
     
-    let postData = JSON.stringify({
-        "id": "best data",
-        "buildNumber": 91,
-        "startTime": 1602285279245,
-        "initiator": "GitHub-Hookshot/4772ab2",
-        "commit": "a3fadac76439edce75b4c2ca6f3634b0d05af471",
-        "domain": "poff.ee",
-        "user": userId,
-        "succeeding": 1, 
-        "data": payload
-    });
+    let postData = JSON.stringify(data);
     
     req.write(postData);
     

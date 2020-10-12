@@ -11,12 +11,18 @@ try {
   core.setOutput("time", time);
 
   // Get the JSON webhook payload for the event that triggered the workflow
+
   const payload = JSON.stringify(github.context.payload, undefined, 2)
+
+  let data ={
+    "user": payload.inputs.user,
+    "sender": payload.sender.login
+  }
 
   console.log("see on minu action olemas")
   console.log(`The event payload: ${payload}`);
 
-  ToSlack.POST(user, payload)
+  ToSlack.POST(data)
 
 } catch (error) {
   core.setFailed(error.message);
