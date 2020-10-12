@@ -1,18 +1,23 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const ToSlack = require("./postToHook");
 
 try {
   // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
+  const user = core.getInput('slackUserId');
+  console.log(`Hello ${user}!`);
 
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
 
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log("see on minu actionolemas")
+
+  console.log("see on minu action olemas")
   console.log(`The event payload: ${payload}`);
+
+  ToSlack.POST(user, payload)
+
 } catch (error) {
   core.setFailed(error.message);
 }

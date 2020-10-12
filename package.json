@@ -19,6 +19,7 @@
   "homepage": "https://github.com/marianntapfer/post-to-slack#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0"
+    "@actions/github": "^4.0.0",
+    "follow-redirects": "^1.13.0"
   }
 }

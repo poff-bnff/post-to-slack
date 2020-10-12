@@ -1,11 +1,12 @@
-name: 'Hello World'
+name: 'slack feedback'
 
-description: 'Greet someone and record the time'
+description: 'send slackbot reciever a message, with slack userID that triggered workflow'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  slackUserId:  # id of input
+    description: 'who pushed button in slack'
     required: true
-    default: 'World'
+    default: 'eikeegi'
+
 outputs:
   time: # id of output
     description: 'The time we greeted you'
