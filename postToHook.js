@@ -1,13 +1,11 @@
-const https = require('follow-redirects').https;
+const http = require('follow-redirects').http;
 const fs = require('fs');
-
-
 
 function POSTtoSlack (data){
 
     let options = {
         'method': 'POST',
-        'hostname': 'http://slackapp.poff.ee',
+        'hostname': 'slackapp.poff.ee',
         'path': '/hook',
         'headers': {
             'Content-Type': 'application/json'
@@ -15,7 +13,7 @@ function POSTtoSlack (data){
         'maxRedirects': 20
     };
     
-    const req = https.request(options, (res) => {
+    const req = http.request(options, (res) => {
         let chunks = [];
     
         res.on("data", (chunk) => {
