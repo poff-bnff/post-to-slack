@@ -8,6 +8,7 @@ try {
   //console.log(`User: ${user}!`);
   const channel = core.getInput('privateChannel');
   //console.log(`Channel: ${user}!`);
+  const channel = core.getInput('status');
   const actor = github.context.actor
   const workflow = github.context.workflow
 
@@ -24,13 +25,10 @@ try {
 
   let data ={
     "user": user,
-    // "sender": payload.sender.login,
     "channel": channel,
-    // "commit": payload.repository.git_commits_url,
     "actor": actor,
     "workflow": workflow,
-
-    // "workflow": payload,
+    "status": status
 
   }
 
