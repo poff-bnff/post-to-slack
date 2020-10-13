@@ -7,10 +7,9 @@ function POSTtoSlack (data){
 
     let options = {
         'method': 'POST',
-        'hostname': 'slackapp.poff.ee',
+        'hostname': 'http://slackapp.poff.ee',
         'path': '/hook',
-        'headers': {
-            "User-Agent": "PostmanRuntime/7.26.3",
+        'headers': {,
             'Content-Type': 'application/json'
         },
         'maxRedirects': 20
@@ -30,6 +29,7 @@ function POSTtoSlack (data){
     
         res.on("error", (error) => {
             console.error(error);
+            console.log("post päringus on error")
         });
     });
     
