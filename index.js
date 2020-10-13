@@ -22,7 +22,7 @@ try {
 
   let data ={
     "user": user,
-    "sender": payload.sender.login,
+    // "sender": payload.sender.login,
     "channel": channel,
     // "commit": payload,
     // "action": payload,
