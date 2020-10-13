@@ -85,7 +85,7 @@ try {
   console.log("see on minu action muutustega")
   console.log(`The event payload: ${payload}`);
 
-  ToSlack.POST(data)
+  //ToSlack.POST(data)
   if (status.toLowerCase() === 'success') {
     data = {
       "user": user,
