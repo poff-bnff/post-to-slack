@@ -30,13 +30,15 @@ function getText(status, slackUser) {
     let user= "nipitiri" 
     if(slackUser.startsWith("U")){
         user = `<@${slackUser}>`
+        console.log(`slackist käivitas<@${slackUser}>`)
     }else{
         user = `<http://github.com/${req.body.actor}|${req.body.actor}>`
+        console.log("pole slackist käivitatud")
     }
     started = user + ' has *started* the "' + `${workflow}`  + '"' + ' workflow ';
-    succeeded = 'The workflow "' + `${workflow}` + '"' + ' was completed *successfully* by ' + `<http://github.com/${actor}|${actor}>`;
-    cancelled = ':warning: The workflow "' + `${workflow}` + '"' + ' was *canceled* by ' + `<http://github.com/${actor}|${actor}>`;
-    failure = '<!here> The workflow "' + `${workflow}` + '"' + ' *failed*';
+    succeeded = 'The workflow "' + `${workflow}` + '"' + ' was completed *successfully* by ' + user;
+    cancelled = ':warning: The workflow "' + `${workflow}` + '"' + ' was *canceled* by ' + user;
+    failure = '<!here> The workflow "' + `${workflow}` + '"' + ' *failed*' + user;
     
     if (status.toLowerCase() === 'success') {
         return succeeded;
