@@ -92,7 +92,7 @@ function generateSlackMessage(text) {
     const status = core.getInput("status");
     const actor = github.context.actor
     let channel = ""
-    let slackUser= ""
+    let slackUser = ""
     if (core.getInput('privateChannel')){
         channel = core.getInput('privateChannel');
     }
