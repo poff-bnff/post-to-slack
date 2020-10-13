@@ -19,8 +19,6 @@ try {
 
   const payload = JSON.stringify(github.context.payload, undefined, 2)
 
-
-  const status = core.getInput("status");
   let statusText = getText(status)
 
   let data ={
