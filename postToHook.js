@@ -7,7 +7,7 @@ function POSTtoSlack (data){
 
     let options = {
         'method': 'POST',
-        'hostname': 'excited-foamy-trigonometry.glitch.me',
+        'hostname': 'http://slackapp.poff.ee',
         'path': '/hook',
         'headers': {
             "User-Agent": "PostmanRuntime/7.26.3",
