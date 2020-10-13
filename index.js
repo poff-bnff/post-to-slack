@@ -55,7 +55,6 @@ function getText(status, slackUser) {
 }
 
 function getPMText(status, slackUser) {
-    const actor = github.context.actor;
     const workflow = github.context.workflow;	
 
     let user= "nipitiri" 
