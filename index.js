@@ -71,10 +71,10 @@ try {
   core.setOutput("time", time);
 
   const payload = JSON.stringify(github.context.payload, undefined, 2)
-  let statusText = getText(status)
   let repository = `https://github.com/${owner}/${repo}|${owner}/${repo}`
   let commit = `https://github.com/${owner}/${repo}/commit/${sha}`
   let actiontab = `https://github.com/${owner}/${repo}/commit/${sha}/checks`
+
 
   function makeData(customText) {
     let data = {
@@ -88,6 +88,7 @@ try {
       "commit": commit,
       "actiontab": actiontab
     }
+    return data
   }
 
   console.log("see on minu action muutustega")
@@ -95,23 +96,23 @@ try {
 
   //ToSlack.POST(data)
   if (status.toLowerCase() === 'success') {
-    makeData("Õnnestus")
-    ToSlack.POST(data)
+    
+    ToSlack.POST(makeData("Õnnestus"))
     console.log("Õnnestus")
   }
   if (status.toLowerCase() === 'cancelled') {
-    makeData("Tühistatud")
-    ToSlack.POST(data)
+    
+    ToSlack.POST(makeData("Tühistatud"))
     console.log("Tühistatud")
   }
   if (status.toLowerCase() === 'failure') {
-    makeData("Feilis")
-    ToSlack.POST(data)
+    
+    ToSlack.POST(makeData("Feilis"))
     console.log("Fail")
   }
   if (status.toLowerCase() === 'started') {
-    makeData("Algas")
-    ToSlack.POST(data)
+    
+    ToSlack.POST(makeData("Algas"))
     console.log("algas")
   }
 
