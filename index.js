@@ -9,26 +9,6 @@ const sucess_color = '#00C0C7';
 const cancelled_color = '#FFA900';
 const failure_color = '#FF614E';
 
-// function post(slackMessage) {
-//     const slack_webhook_url = core.getInput("slack_webhook_url");
-//     fetch(slack_webhook_url, {
-//         method: 'POST',
-//         body: JSON.stringify(slackMessage),
-//         headers: { 'Content-Type': 'application/json' },
-//     }).catch(console.error);
-    
-//     if (!core.getInput("slack_webhook_url")) {
-//      try {   
-//        throw new Error(`[Error] Missing Slack Incoming Webhooks URL
-//            Please configure "SLACK_WEBHOOK" as environment variable or
-//            specify the key called "slack_webhook_url" in "with" section`);
-//        } 
-//        catch (error) {	
-//            console.error(error.message);	
-//        }
-//     } 
-//  }
-
 function getColor(status) {
     
     if (status.toLowerCase() === 'success') {
@@ -78,15 +58,11 @@ function generateSlackMessage(text) {
     const { owner, repo } = github.context.repo;
     const status = core.getInput("status");
     const actor = github.context.actor
-    
-    const channel = core.getInput('privateChannel'); //console.log(`Channel: ${user}!`);
-    // const channel = core.getInput("slack_channel");
-    // const username = core.getInput("slack_username");
-
+    const channel = core.getInput('privateChannel');
     const slackUser = core.getInput('slackUserId');
 
     return {
-        user: user,
+        user: slackUser,
         channel: channel,
         actor: actor,
         status: status,
