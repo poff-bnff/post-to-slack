@@ -43,10 +43,17 @@ function getColor(status) {
     return start_color;
 }
 
-function getText(status) {
+function getText(status, slackUser) {
     const actor = github.context.actor;
     const workflow = github.context.workflow;	
-    started = `<http://github.com/${actor}|${actor}>` + ' has *started* the "' + `${workflow}`  + '"' + ' workflow ';
+
+    let user= "nipitiri" 
+    if(slackUser.startsWith("U")){
+        user = `<@${slackUser}>`
+    }else{
+        user = `<http://github.com/${req.body.actor}|${req.body.actor}>`
+    }
+    started = user + ' has *started* the "' + `${workflow}`  + '"' + ' workflow ';
     succeeded = 'The workflow "' + `${workflow}` + '"' + ' was completed *successfully* by ' + `<http://github.com/${actor}|${actor}>`;
     cancelled = ':warning: The workflow "' + `${workflow}` + '"' + ' was *canceled* by ' + `<http://github.com/${actor}|${actor}>`;
     failure = '<!here> The workflow "' + `${workflow}` + '"' + ' *failed*';
@@ -71,16 +78,19 @@ function generateSlackMessage(text) {
     const { owner, repo } = github.context.repo;
     const status = core.getInput("status");
     const actor = github.context.actor
-    const user = core.getInput('slackUserId'); //console.log(`User: ${user}!`);
+    
     const channel = core.getInput('privateChannel'); //console.log(`Channel: ${user}!`);
     // const channel = core.getInput("slack_channel");
     // const username = core.getInput("slack_username");
+
+    const slackUser = core.getInput('slackUserId');
+
     return {
         user: user,
         channel: channel,
         actor: actor,
         status: status,
-        text: getText(status),
+        text: getText(status, slackUser),
         attachments: [
             {
                 fallback: text,
