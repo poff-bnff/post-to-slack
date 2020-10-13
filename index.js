@@ -53,24 +53,23 @@ function post(slackMessage) {
 
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const user = core.getInput('slackUserId');
-  //console.log(`User: ${user}!`);
-  const channel = core.getInput('privateChannel');
-  //console.log(`Channel: ${user}!`);
+  // input defined in action metadata file
+  const user = core.getInput('slackUserId');//console.log(`User: ${user}!`);
+  const channel = core.getInput('privateChannel');//console.log(`Channel: ${user}!`);
   const status = core.getInput('status');
-
   const actor = github.context.actor
   const workflow = github.context.workflow
-
+  const { sha } = github.context;
+  const { owner, repo } = github.context.repo;
+  
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
 
-  // Get the JSON webhook payload for the event that triggered the workflow
-
   const payload = JSON.stringify(github.context.payload, undefined, 2)
-
   let statusText = getText(status)
+  let repository = `<https://github.com/${owner}/${repo}|${owner}/${repo}>`
+  let commit = `https://github.com/${owner}/${repo}/commit/${sha}`
+  let actiontab = `https://github.com/${owner}/${repo}/commit/${sha}/checks`
 
   let data = {
     "user": user,
@@ -78,7 +77,10 @@ try {
     "actor": actor,
     "workflow": workflow,
     "status": status,
-    "text": statusText
+    "text": statusText,
+    "repo": repository,
+    "commit": commit,
+    "actiontab": actiontab
   }
   
 
