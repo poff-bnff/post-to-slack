@@ -72,7 +72,7 @@ try {
 
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   let statusText = getText(status)
-  let repository = `<https://github.com/${owner}/${repo}|${owner}/${repo}>`
+  let repository = `https://github.com/${owner}/${repo}|${owner}/${repo}`
   let commit = `https://github.com/${owner}/${repo}/commit/${sha}`
   let actiontab = `https://github.com/${owner}/${repo}/commit/${sha}/checks`
 
