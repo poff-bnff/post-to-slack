@@ -25,13 +25,14 @@ function getColor(status) {
 
 function getText(status, slackUser) {
     const workflow = github.context.workflow;	
+    const actor = github.context.actor;
 
     let user= "nipitiri" 
     if(slackUser.startsWith("U")){
         user = `<@${slackUser}>`
         console.log(`slackist käivitas<@${slackUser}>`)
     }else{
-        user = `<http://github.com/${req.body.actor}|${req.body.actor}>`
+        user = `<http://github.com/${actor}|${actor}>`
         console.log("pole slackist käivitatud")
     }
     started = `${user} *alustas* ${workflow} ehitamist`
@@ -131,6 +132,6 @@ function generateSlackMessage(text) {
 try {
     ToSlack.POST(generateSlackMessage('Sending message'));
 } catch (error) {
-    console.log(error)
+    console.log
   core.setFailed(`[Error] There was an error when sending the slack notification`);
 } 
