@@ -70,6 +70,7 @@ function generateSlackMessage(text) {
     const { sha } = github.context;
     const { owner, repo } = github.context.repo;
     const status = core.getInput("status");
+    const actor = github.context.actor
     const user = core.getInput('slackUserId'); //console.log(`User: ${user}!`);
     const channel = core.getInput('privateChannel'); //console.log(`Channel: ${user}!`);
     // const channel = core.getInput("slack_channel");
@@ -77,6 +78,8 @@ function generateSlackMessage(text) {
     return {
         user: user,
         channel: channel,
+        actor: actor,
+        status: status,
         text: getText(status),
         attachments: [
             {
