@@ -8,7 +8,7 @@ try {
   //console.log(`User: ${user}!`);
   const channel = core.getInput('privateChannel');
   //console.log(`Channel: ${user}!`);
-  const channel = core.getInput('status');
+  const status = core.getInput('status');
   const actor = github.context.actor
   const workflow = github.context.workflow
 
