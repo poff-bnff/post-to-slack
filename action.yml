@@ -5,7 +5,7 @@ inputs:
     description: 'who pushed button in slack'
     required: false
   privateChannel:
-    description: "channel between deploybot and slack user"
+    description: 'channel between deploybot and slack user'
     required: false
   status:
     description: 'The result of GitHub Actions job'
