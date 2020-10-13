@@ -3,10 +3,10 @@ description: 'send slackbot reciever a message, with slack userID that triggered
 inputs:
   slackUserId:  # id of input
     description: 'who pushed button in slack'
-    default: 'nipitiri'
+    required: false
   privateChannel:
     description: "channel between deploybot and slack user"
-    default: 'kanal 2'
+    required: false
   status:
     description: 'The result of GitHub Actions job'
     default: ${{ job.status }}  
