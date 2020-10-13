@@ -131,5 +131,6 @@ function generateSlackMessage(text) {
 try {
     ToSlack.POST(generateSlackMessage('Sending message'));
 } catch (error) {
+    console.log(error)
   core.setFailed(`[Error] There was an error when sending the slack notification`);
 } 
