@@ -4,7 +4,7 @@ const ToSlack = require("./postToHook");
 
 try {
   // `who-to-greet` input defined in action metadata file
-  const user = core.getInput('user');
+  const user = core.getInput('slackUserId');
   console.log(`User: ${user}!`);
   const channel = core.getInput('privateChannel');
   console.log(`Channel: ${user}!`);

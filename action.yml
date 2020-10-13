@@ -1,7 +1,7 @@
 name: 'slack feedback'
 description: 'send slackbot reciever a message, with slack userID that triggered workflow'
 inputs:
-  user:  # id of input
+  slackUserId:  # id of input
     description: 'who pushed button in slack'
     required: true
     default: 'ei leia kasutajat'
