@@ -1,3 +1,7 @@
+const core = require('@actions/core');
+const github = require('@actions/github');
+const fetch = require('node-fetch');
+
 const start_color = '#C8F1F3';
 const sucess_color = '#00C0C7';
 const cancelled_color = '#FFA900';
@@ -105,6 +109,8 @@ function generateSlackMessage(text) {
         ]
     };
 }
+
+
 try {
     post(generateSlackMessage('Sending message'));
 } catch (error) {
