@@ -36,9 +36,9 @@ function getText(status, slackUser) {
         console.log("pole slackist käivitatud")
     }
     started = user + ' has *started* the "' + `${workflow}`  + '"' + ' workflow ';
-    succeeded = 'The workflow "' + `${workflow}` + '"' + ' was completed *successfully* by ' + user;
-    cancelled = ':warning: The workflow "' + `${workflow}` + '"' + ' was *canceled* by ' + user;
-    failure = '<!here> The workflow "' + `${workflow}` + '"' + ' *failed*' + user;
+    succeeded = `${user} alustatud ${workflow} ehitamine lõppes *EDUKALT*`
+    cancelled = `:warning: ${user} tühistas ${workflow} ehitamise`
+    failure = `<!here> ${user} alustatud ${workflow} ehitamine *EBAÕNNESTUS*`
     
     if (status.toLowerCase() === 'success') {
         return succeeded;
@@ -74,18 +74,6 @@ function generateSlackMessage(text) {
                 fallback: text,
                 color: getColor(status),
                 ts: Math.floor(Date.now() / 1000),
-                "fields": [
-                    {
-                        "title": "Repository",
-                        "value": `<https://github.com/${owner}/${repo}|${owner}/${repo}>`,
-                        "short": true
-                    },      
-                    {
-                        "title": "Ref",
-                        "value": github.context.ref,
-                        "short": true
-                    },                   
-                ],
                 "actions": [ 
                     {
                        "type": "button",
