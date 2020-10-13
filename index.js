@@ -74,7 +74,19 @@ function generateSlackMessage(text) {
                 fallback: text,
                 color: getColor(status),
                 ts: Math.floor(Date.now() / 1000),
+                "fields": [    
+                    {
+                        "title": `BRANCH ${github.context.ref.split("/")[2]}`,
+                        "value": `https://github.com/${owner}/${repo}/tree/${sha}`,
+                        "short": true
+                    },                   
+                ],
                 "actions": [ 
+                    {
+                        "type": "button",
+                        "text": "Branch", 
+                        "url": `https://github.com/${owner}/${repo}/commit/${sha}` 
+                     },
                     {
                        "type": "button",
                        "text": "Commit", 
