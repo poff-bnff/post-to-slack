@@ -35,10 +35,42 @@ function getText(status, slackUser) {
         user = `<http://github.com/${req.body.actor}|${req.body.actor}>`
         console.log("pole slackist käivitatud")
     }
-    started = user + ' has *started* the "' + `${workflow}`  + '"' + ' workflow ';
+    started = `${user} *alustas* ${workflow} ehitamist`
     succeeded = `${user} alustatud ${workflow} ehitamine lõppes *EDUKALT*`
     cancelled = `:warning: ${user} tühistas ${workflow} ehitamise`
     failure = `<!here> ${user} alustatud ${workflow} ehitamine *EBAÕNNESTUS*`
+    
+    if (status.toLowerCase() === 'success') {
+        return succeeded;
+    }
+    if (status.toLowerCase() === 'cancelled') {
+        return cancelled;
+    }
+    if (status.toLowerCase() === 'failure') {
+        return failure;
+    }
+    if (status.toLowerCase() === 'started') {
+        return started;
+    }
+    return 'status no valido';
+}
+
+function getPMText(status, slackUser) {
+    const actor = github.context.actor;
+    const workflow = github.context.workflow;	
+
+    let user= "nipitiri" 
+    if(slackUser.startsWith("U")){
+        user = `<@${slackUser}>`
+        console.log(`slackist käivitas<@${slackUser}>`)
+    }else{
+        user = `<http://github.com/${req.body.actor}|${req.body.actor}>`
+        console.log("pole slackist käivitatud")
+    }
+    started = `${user}, *alustasid* ${workflow} ehitamist`
+    succeeded = `${user}, sinu muudatused on jõudnud *${workflow}* lehele.`
+    cancelled = `:warning: ${user},  tühistasid ${workflow} ehitamise`
+    failure = `<!here> ${user}, sinu alustatud ${workflow} ehitamine *EBAÕNNESTUS*. Saatsin ebaõnnestumisest arendajate kanalisse ka.`
     
     if (status.toLowerCase() === 'success') {
         return succeeded;
@@ -68,6 +100,7 @@ function generateSlackMessage(text) {
         channel: channel,
         actor: actor,
         status: status,
+        PM: getPMText(status, slackUser),
         text: getText(status, slackUser),
         attachments: [
             {
