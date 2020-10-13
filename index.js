@@ -26,7 +26,8 @@ try {
     "channel": channel,
     "actor": actor,
     "workflow": workflow,
-    "status": status
+    "status": status, 
+    "text": statusText
 
   }
 
