@@ -54,14 +54,19 @@ function post(slackMessage) {
 
 try {
   // input defined in action metadata file
-  const user = core.getInput('slackUserId');//console.log(`User: ${user}!`);
-  const channel = core.getInput('privateChannel');//console.log(`Channel: ${user}!`);
+  const user = core.getInput('slackUserId'); //console.log(`User: ${user}!`);
+  const channel = core.getInput('privateChannel'); //console.log(`Channel: ${user}!`);
   const status = core.getInput('status');
   const actor = github.context.actor
   const workflow = github.context.workflow
-  const { sha } = github.context;
-  const { owner, repo } = github.context.repo;
-  
+  const {
+    sha
+  } = github.context;
+  const {
+    owner,
+    repo
+  } = github.context.repo;
+
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
 
@@ -71,92 +76,47 @@ try {
   let commit = `https://github.com/${owner}/${repo}/commit/${sha}`
   let actiontab = `https://github.com/${owner}/${repo}/commit/${sha}/checks`
 
-  let data = {
-    "user": user,
-    "channel": channel,
-    "actor": actor,
-    "workflow": workflow,
-    "status": status,
-    "text": statusText,
-    "repo": repository,
-    "commit": commit,
-    "actiontab": actiontab
+  function makeData(customText) {
+    let data = {
+      "user": user,
+      "channel": channel,
+      "actor": actor,
+      "workflow": workflow,
+      "status": status,
+      "text": customText,
+      "repo": repository,
+      "commit": commit,
+      "actiontab": actiontab
+    }
   }
-  
 
   console.log("see on minu action muutustega")
   console.log(`The event payload: ${payload}`);
 
   //ToSlack.POST(data)
   if (status.toLowerCase() === 'success') {
-    data = {
-      "user": user,
-      "channel": channel,
-      "actor": actor,
-      "workflow": workflow,
-      "status": status,
-      "text": "Õnnestus",
-      "text": statusText,
-      "repo": repository,
-      "commit": commit,
-      "actiontab": actiontab
-      
-    }
+    makeData("Õnnestus")
     ToSlack.POST(data)
     console.log("Õnnestus")
   }
   if (status.toLowerCase() === 'cancelled') {
-    data = {
-      "user": user,
-      "channel": channel,
-      "actor": actor,
-      "workflow": workflow,
-      "status": status,
-      "text": "Tühistatud",
-      "text": statusText,
-      "repo": repository,
-      "commit": commit,
-      "actiontab": actiontab
-    }
+    makeData("Tühistatud")
     ToSlack.POST(data)
     console.log("Tühistatud")
   }
   if (status.toLowerCase() === 'failure') {
-    data = {
-      "user": user,
-      "channel": channel,
-      "actor": actor,
-      "workflow": workflow,
-      "status": status,
-      "text": "Fail",
-      "text": statusText,
-      "repo": repository,
-      "commit": commit,
-      "actiontab": actiontab
-    }
+    makeData("Feilis")
     ToSlack.POST(data)
     console.log("Fail")
   }
   if (status.toLowerCase() === 'started') {
-    data = {
-      "user": user,
-      "channel": channel,
-      "actor": actor,
-      "workflow": workflow,
-      "status": status,
-      "text": "Started",
-      "text": statusText,
-      "repo": repository,
-      "commit": commit,
-      "actiontab": actiontab
-    }
+    makeData("Algas")
     ToSlack.POST(data)
     console.log("algas")
   }
-  return 'status no valido';
 
 } catch (error) {
-  core.setFailed(error.message);
+  core.setFailed(`[Error] There was an error when sending the slack notification`);
 }
 
 function getText(status) {
