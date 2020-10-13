@@ -95,7 +95,12 @@ try {
       "actor": actor,
       "workflow": workflow,
       "status": status,
-      "text": "Õnnestus"
+      "text": "Õnnestus",
+      "text": statusText,
+      "repo": repository,
+      "commit": commit,
+      "actiontab": actiontab
+      
     }
     ToSlack.POST(data)
     console.log("Õnnestus")
@@ -107,7 +112,11 @@ try {
       "actor": actor,
       "workflow": workflow,
       "status": status,
-      "text": "Tühistatud"
+      "text": "Tühistatud",
+      "text": statusText,
+      "repo": repository,
+      "commit": commit,
+      "actiontab": actiontab
     }
     ToSlack.POST(data)
     console.log("Tühistatud")
@@ -119,7 +128,11 @@ try {
       "actor": actor,
       "workflow": workflow,
       "status": status,
-      "text": "Fail"
+      "text": "Fail",
+      "text": statusText,
+      "repo": repository,
+      "commit": commit,
+      "actiontab": actiontab
     }
     ToSlack.POST(data)
     console.log("Fail")
@@ -131,7 +144,11 @@ try {
       "actor": actor,
       "workflow": workflow,
       "status": status,
-      "text": "Started"
+      "text": "Started",
+      "text": statusText,
+      "repo": repository,
+      "commit": commit,
+      "actiontab": actiontab
     }
     ToSlack.POST(data)
     console.log("algas")
