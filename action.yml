@@ -1,11 +1,18 @@
 name: 'slack feedback'
-
 description: 'send slackbot reciever a message, with slack userID that triggered workflow'
 inputs:
-  slackUserId:  # id of input
+  user:  # id of input
     description: 'who pushed button in slack'
     required: true
-    default: 'eikeegi'
+    default: 'ei leia kasutajat'
+  privateChannel:
+    description: "channel between deploybot and slack user"
+    required: true
+    default: 'ei leia kanalit'
+  status:
+    description: 'The result of GitHub Actions job'
+    default: ${{ job.status }}  
+
 
 outputs:
   time: # id of output
