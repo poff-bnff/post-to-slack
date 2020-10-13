@@ -3,11 +3,9 @@ description: 'send slackbot reciever a message, with slack userID that triggered
 inputs:
   slackUserId:  # id of input
     description: 'who pushed button in slack'
-    required: true
     default: 'ei leia kasutajat'
   privateChannel:
     description: "channel between deploybot and slack user"
-    required: true
     default: 'ei leia kanalit'
   status:
     description: 'The result of GitHub Actions job'
