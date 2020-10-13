@@ -5,9 +5,11 @@ const ToSlack = require("./postToHook");
 try {
   // `who-to-greet` input defined in action metadata file
   const user = core.getInput('slackUserId');
-  console.log(`User: ${user}!`);
+  //console.log(`User: ${user}!`);
   const channel = core.getInput('privateChannel');
-  console.log(`Channel: ${user}!`);
+  //console.log(`Channel: ${user}!`);
+  const actor = github.context.actor
+  const workflow = github.context.workflow
 
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
@@ -22,10 +24,12 @@ try {
 
   let data ={
     "user": user,
-    // "sender": payload.sender.login,
+    "sender": payload.sender.login,
     "channel": channel,
-    // "commit": payload,
-    // "action": payload,
+    "commit": payload.repository.git_commits_url,
+    "actor": actor,
+    "workflow": workflow,
+
     // "workflow": payload,
 
   }
