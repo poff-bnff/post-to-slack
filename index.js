@@ -80,15 +80,6 @@ try {
     "status": status,
     "text": statusText
   }
-
-  let data = {
-    "user": user,
-    "channel": channel,
-    "actor": actor,
-    "workflow": workflow,
-    "status": status,
-    "text": statusText
-  }
   
 
   console.log("see on minu action muutustega")
