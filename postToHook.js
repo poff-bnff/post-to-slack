@@ -9,7 +9,7 @@ function POSTtoSlack (data){
         'method': 'POST',
         'hostname': 'http://slackapp.poff.ee',
         'path': '/hook',
-        'headers': {,
+        'headers': {
             'Content-Type': 'application/json'
         },
         'maxRedirects': 20
