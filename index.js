@@ -128,7 +128,8 @@ function generateSlackMessage(text) {
         ]
     };
 }
-
+const payload = JSON.stringify(github.context.payload, undefined, 2)
+console.log(payload)
 
 try {
     ToSlack.POST(generateSlackMessage('Sending message'));
