@@ -35,7 +35,7 @@ function getColor(status) {
     return start_color;
 }
 
-function getText(status, slackUserId) {
+function getText(status) {
     const workflow = github.context.workflow;	
     const actor = github.context.actor;
     let user
