@@ -138,6 +138,7 @@ function generateSlackMessage(text) {
 slackUser = core.getInput('slackUserId')
 channel = core.getInput('privateChannel');
 const payload = JSON.stringify(github.context.payload, undefined, 2)
+console.log(payload)
 
 let simpleData ={
 user: slackUser,
