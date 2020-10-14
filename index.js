@@ -146,7 +146,6 @@ channel: 'D01A0G9AX46',
       fallback: 'Sending message',
       color: '#00C0C7',
       ts: 1602623452,
-      actions: [Array]
     }
   ]
 }
