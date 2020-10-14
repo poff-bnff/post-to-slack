@@ -133,8 +133,10 @@ const data = JSON.parse(payload)
 console.log(payload)
 let privateChannel = ""
 let slackUserId= ""
-if(data.inputs.privateChannel)privateChannel = data.inputs.privateChannel
-if(data.inputs.slackUserId)slackUserId = data.inputs.slackUserId
+if(data.inputs !== "undefined"){
+    privateChannel = data.inputs.privateChannel
+  slackUserId = data.inputs.slackUserId
+}
 console.log("siia tahan koode")
 console.log(privateChannel)
 console.log(slackUserId)
