@@ -57,13 +57,14 @@ function getText(status, slackUser) {
 
 function getPMText(status, slackUser) {
     const workflow = github.context.workflow;	
+    const actor = github.context.actor;
 
     let user= "nipitiri" 
     if(slackUser.startsWith("U")){
         user = `<@${slackUser}>`
         console.log(`slackist käivitas<@${slackUser}>`)
     }else{
-        user = `<http://github.com/${req.body.actor}|${req.body.actor}>`
+        user = `<http://github.com/${actor}|${actor}>`
         console.log("pole slackist käivitatud")
     }
     started = `${user}, *alustasid* ${workflow} ehitamist`
