@@ -30,6 +30,7 @@ function POSTtoSlack (data){
             console.log("post päringus on error")
         });
     });
+    console.log ("data jõudis postToHook funktsiooni")
     
     let postData = JSON.stringify(data);
     

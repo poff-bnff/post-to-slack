@@ -137,17 +137,7 @@ function generateSlackMessage(text) {
 let simpleData ={
 user: 'U017R696P1Q',
 channel: 'D01A0G9AX46',
-  actor: 'marianntapfer',
-  status: 'success',
-  PM: '<@U017R696P1Q>, sinu muudatused on jõudnud *Manual workflow* lehele.',
-  text: '<@U017R696P1Q> alustatud Manual workflow ehitamine lõppes *EDUKALT*',
-  attachments: [
-    {
-      fallback: 'Sending message',
-      color: '#00C0C7',
-      ts: 1602623452,
-    }
-  ]
+text: "heureka"
 }
 
 
@@ -155,6 +145,6 @@ try {
     //ToSlack.POST(generateSlackMessage('Sending message'));
     ToSlack.POST(simpleData);
 } catch (error) {
-    console.log
+    console.log(error)
   core.setFailed(`[Error] There was an error when sending the slack notification`);
 } 
