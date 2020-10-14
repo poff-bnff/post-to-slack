@@ -131,11 +131,13 @@ function generateSlackMessage(text) {
 const payload = JSON.stringify(github.context.payload, undefined, 2)
 const data = JSON.parse(payload)
 console.log(payload)
-// const privateChannel = data.inputs.privateChannel
-// const slackUserId = data.inputs.slackUserId
-// console.log("siia tahan koode")
-// console.log(privateChannel)
-// console.log(slackUserId)
+let privateChannel = ""
+let slackUserId= ""
+if(data.inputs.privateChannel)privateChannel = data.inputs.privateChannel
+if(data.inputs.slackUserId)slackUserId = data.inputs.slackUserId
+console.log("siia tahan koode")
+console.log(privateChannel)
+console.log(slackUserId)
 
 try {
     ToSlack.POST(generateSlackMessage('Sending message'));
