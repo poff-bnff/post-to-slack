@@ -147,8 +147,8 @@ text: "heureka foo bar"
 
 
 try {
-    //ToSlack.POST(generateSlackMessage('Sending message'));
-    ToSlack.POST(simpleData);
+    ToSlack.POST(generateSlackMessage('Sending message'));
+    //ToSlack.POST(simpleData);
 } catch (error) {
     console.log(error)
   core.setFailed(`[Error] There was an error when sending the slack notification`);
