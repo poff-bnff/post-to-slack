@@ -56,10 +56,10 @@ function getText(status, slackUser) {
 }
 
 function getPMText(status, slackUser) {
-    const workflow = github.context.workflow;	
+    const workflow = github.context.workflow;
     const actor = github.context.actor;
 
-    let user= "nipitiri" 
+    let slackUser = core.getInput('slackUserId') 
     if(slackUser.startsWith("U")){
         user = `<@${slackUser}>`
         console.log(`slackist käivitas<@${slackUser}>`)
@@ -106,8 +106,8 @@ function generateSlackMessage(text) {
         channel: channel,
         actor: actor,
         status: status,
-        PM: getPMText(status, slackUser),
-        text: getText(status, slackUser),
+        PM: getPMText(status),
+        text: getText(status),
         attachments: [
             {
                 fallback: text,
