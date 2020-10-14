@@ -23,15 +23,14 @@ function getColor(status) {
     return start_color;
 }
 
-function getText(status) {
+function getText(status, slackUserId) {
     const workflow = github.context.workflow;	
     const actor = github.context.actor;
-    const slackUser = core.getInput('slackUserId') 
     let user
 
-    if(slackUser.startsWith("U")){
-        user = `<@${slackUser}>`
-        console.log(`slackist käivitas<@${slackUser}>`)
+    if(slackUserId.startsWith("U")){
+        user = `<@${slackUserId}>`
+        console.log(`slackist käivitas<@${slackUserId}>`)
     }else{
         user = `<http://github.com/${actor}|${actor}>`
         console.log("pole slackist käivitatud")
@@ -56,14 +55,13 @@ function getText(status) {
     return 'status no valido';
 }
 
-function getPMText(status) {
+function getPMText(status, slackUserId) {
     const workflow = github.context.workflow;
     const actor = github.context.actor;
-    const slackUser = core.getInput('slackUserId') 
     let user
-    if(slackUser.startsWith("U")){
-        user = `<@${slackUser}>`
-        console.log(`slackist käivitas<@${slackUser}>`)
+    if(slackUserId.startsWith("U")){
+        user = `<@${slackUserId}>`
+        console.log(`slackist käivitas<@${slackUserId}>`)
     }else{
         user = `<http://github.com/${actor}|${actor}>`
         console.log("pole slackist käivitatud")
@@ -95,19 +93,15 @@ function generateSlackMessage(text) {
     const actor = github.context.actor
     const slackUserId = core.getInput('slackUserId')
     const channelId = core.getInput('privateChannel')
-    // let channel = "bar"
-    // let slackUser = "foo"
-    // if (channelId)channel = channelId;
-    // if(slackUserId)slackUser = slackUserId;
-    
+    console.log( "generate message sees", slackUserId, channelId)
 
     return {
         user: slackUserId,
         channel: channelId,
         actor: actor,
         status: status,
-        PM: getPMText(status),
-        text: getText(status),
+        PM: getPMText(status, slackUserId),
+        text: getText(status, slackUserId),
         attachments: [
             {
                 fallback: text,
