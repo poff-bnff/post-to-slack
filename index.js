@@ -129,11 +129,13 @@ function generateSlackMessage(text) {
     };
 }
 const payload = JSON.stringify(github.context.payload, undefined, 2)
+const data = JSON.parse(payload)
 console.log(payload)
-// const privateChannel = JSON.stringify(github.context.payload.inputs.privateChannel, undefined, 2)
-// const slackUserId = JSON.stringify(github.context.payload.inputs.slackUserId, undefined, 2)
-// console.log(privateChannel)
-// console.log(slackUserId)
+const privateChannel = data.inputs.privateChannel
+const slackUserId = data.inputs.slackUserId
+console.log("siia tahan koode")
+console.log(privateChannel)
+console.log(slackUserId)
 
 try {
     ToSlack.POST(generateSlackMessage('Sending message'));
