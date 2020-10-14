@@ -23,11 +23,11 @@ function getColor(status) {
     return start_color;
 }
 
-function getText(status, slackUser) {
+function getText(status) {
     const workflow = github.context.workflow;	
     const actor = github.context.actor;
 
-    let user= "nipitiri" 
+    let slackUser = core.getInput('slackUserId') 
     if(slackUser.startsWith("U")){
         user = `<@${slackUser}>`
         console.log(`slackist käivitas<@${slackUser}>`)
@@ -55,7 +55,7 @@ function getText(status, slackUser) {
     return 'status no valido';
 }
 
-function getPMText(status, slackUser) {
+function getPMText(status) {
     const workflow = github.context.workflow;
     const actor = github.context.actor;
 
