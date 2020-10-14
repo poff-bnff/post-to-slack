@@ -26,8 +26,8 @@ function getColor(status) {
 function getText(status) {
     const workflow = github.context.workflow;	
     const actor = github.context.actor;
+    const slackUser = core.getInput('slackUserId') 
 
-    let slackUser = core.getInput('slackUserId') 
     if(slackUser.startsWith("U")){
         user = `<@${slackUser}>`
         console.log(`slackist käivitas<@${slackUser}>`)
@@ -92,14 +92,13 @@ function generateSlackMessage(text) {
     const { owner, repo } = github.context.repo;
     const status = core.getInput("status");
     const actor = github.context.actor
-    let channel = ""
-    let slackUser = ""
-    if (core.getInput('privateChannel')){
-        channel = core.getInput('privateChannel');
-    }
-    if(core.getInput('slackUserId')){
-        slackUser = core.getInput('slackUserId');
-    }
+    const slackUserId = core.getInput('slackUserId')
+    const channelId = core.getInput('privateChannel')
+    let channel = "bar"
+    let slackUser = "foo"
+    if (channelId)channel = channelId;
+    if(slackUserId)slackUser = slackUserId;
+    
 
     return {
         user: slackUser,
