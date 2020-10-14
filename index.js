@@ -27,6 +27,7 @@ function getText(status) {
     const workflow = github.context.workflow;	
     const actor = github.context.actor;
     const slackUser = core.getInput('slackUserId') 
+    let user
 
     if(slackUser.startsWith("U")){
         user = `<@${slackUser}>`
@@ -58,8 +59,8 @@ function getText(status) {
 function getPMText(status) {
     const workflow = github.context.workflow;
     const actor = github.context.actor;
-
-    let slackUser = core.getInput('slackUserId') 
+    const slackUser = core.getInput('slackUserId') 
+    let user
     if(slackUser.startsWith("U")){
         user = `<@${slackUser}>`
         console.log(`slackist käivitas<@${slackUser}>`)
@@ -94,15 +95,15 @@ function generateSlackMessage(text) {
     const actor = github.context.actor
     const slackUserId = core.getInput('slackUserId')
     const channelId = core.getInput('privateChannel')
-    let channel = "bar"
-    let slackUser = "foo"
-    if (channelId)channel = channelId;
-    if(slackUserId)slackUser = slackUserId;
+    // let channel = "bar"
+    // let slackUser = "foo"
+    // if (channelId)channel = channelId;
+    // if(slackUserId)slackUser = slackUserId;
     
 
     return {
-        user: slackUser,
-        channel: channel,
+        user: slackUserId,
+        channel: channelId,
         actor: actor,
         status: status,
         PM: getPMText(status),
@@ -132,18 +133,6 @@ function generateSlackMessage(text) {
             }
         ]
     };
-}
-
-slackUser = core.getInput('slackUserId')
-channel = core.getInput('privateChannel');
-const payload = JSON.stringify(github.context.payload, undefined, 2)
-console.log(payload)
-
-let simpleData ={
-user: slackUser,
-channel: channel,
-payload: payload,
-text: "heureka foo bar"
 }
 
 
