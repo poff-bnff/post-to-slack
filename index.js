@@ -3,11 +3,23 @@ const github = require('@actions/github');
 // const fetch = require('node-fetch');
 const ToSlack = require("./postToHook");
 
-
 const start_color = '#C8F1F3';
 const sucess_color = '#228C22';
 const cancelled_color = '#FFA900';
 const failure_color = '#DFF2800';
+
+const payload = JSON.stringify(github.context.payload, undefined, 2)
+const data = JSON.parse(payload)
+console.log(payload)
+let privateChannel = ""
+let slackUserId= ""
+if(data.hasOwnProperty('inputs')){
+  privateChannel = data.inputs.privateChannel
+  slackUserId = data.inputs.slackUserId
+}
+console.log("siia tahan koode")
+console.log(privateChannel)
+console.log(slackUserId)
 
 function getColor(status) {
     
@@ -55,7 +67,7 @@ function getText(status, slackUserId) {
     return 'status no valido';
 }
 
-function getPMText(status, slackUserId) {
+function getPMText(status) {
     const workflow = github.context.workflow;
     const actor = github.context.actor;
     let user
@@ -91,17 +103,15 @@ function generateSlackMessage(text) {
     const { owner, repo } = github.context.repo;
     const status = core.getInput("status");
     const actor = github.context.actor
-    const slackUserId = core.getInput('slackUserId')
-    const channelId = core.getInput('privateChannel')
-    console.log( "generate message sees", slackUserId, channelId)
+    console.log( "generate message sees", slackUserId, privateChannel)
 
     return {
         user: slackUserId,
-        channel: channelId,
+        channel: privateChannel,
         actor: actor,
         status: status,
-        PM: getPMText(status, slackUserId),
-        text: getText(status, slackUserId),
+        PM: getPMText(status),
+        text: getText(status),
         attachments: [
             {
                 fallback: text,
@@ -128,19 +138,6 @@ function generateSlackMessage(text) {
         ]
     };
 }
-const payload = JSON.stringify(github.context.payload, undefined, 2)
-const data = JSON.parse(payload)
-console.log(payload)
-let privateChannel = ""
-let slackUserId= ""
-if(data.hasOwnProperty('inputs')){
-  privateChannel = data.inputs.privateChannel
-  slackUserId = data.inputs.slackUserId
-}
-console.log(data.inputs !== 'undefined')
-console.log("siia tahan koode")
-console.log(privateChannel)
-console.log(slackUserId)
 
 try {
     ToSlack.POST(generateSlackMessage('Sending message'));
