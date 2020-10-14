@@ -140,7 +140,7 @@ channel = core.getInput('privateChannel');
 let simpleData ={
 user: slackUser,
 channel: channel,
-text: "heureka"
+text: "heureka foo bar"
 }
 
 
