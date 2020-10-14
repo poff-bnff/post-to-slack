@@ -134,9 +134,12 @@ function generateSlackMessage(text) {
     };
 }
 
+slackUser = core.getInput('slackUserId')
+channel = core.getInput('privateChannel');
+
 let simpleData ={
-user: 'U017R696P1Q',
-channel: 'D01A0G9AX46',
+user: slackUser,
+channel: channel,
 text: "heureka"
 }
 
