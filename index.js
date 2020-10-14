@@ -5,9 +5,9 @@ const ToSlack = require("./postToHook");
 
 
 const start_color = '#C8F1F3';
-const sucess_color = '#00C0C7';
+const sucess_color = '#228C22';
 const cancelled_color = '#FFA900';
-const failure_color = '#FF614E';
+const failure_color = '#DFF2800';
 
 function getColor(status) {
     
