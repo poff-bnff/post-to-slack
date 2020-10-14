@@ -129,7 +129,9 @@ function generateSlackMessage(text) {
     };
 }
 const payload = JSON.stringify(github.context.payload, undefined, 2)
-console.log(payload)
+console.log("from payload")
+console.log(payload.inputs.privateChannel)
+console.log(payload.inputs.slackUserId)
 
 try {
     ToSlack.POST(generateSlackMessage('Sending message'));
