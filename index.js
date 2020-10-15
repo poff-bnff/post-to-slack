@@ -105,7 +105,10 @@ function generateSlackMessage(text) {
     const { owner, repo } = github.context.repo;
     const status = core.getInput("status");
     const actor = github.context.actor
-    console.log( "generate message sees", slackUserId, privateChannel)
+    const inputs = github.context.payload.inputs
+    console.log(inputs)
+
+    //console.log( "generate message sees", slackUserId, privateChannel)
 
     return {
         user: slackUserId,
