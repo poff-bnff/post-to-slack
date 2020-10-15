@@ -8,6 +8,14 @@ const sucess_color = '#228C22';
 const cancelled_color = '#FFA900';
 const failure_color = '#DFF2800';
 
+const payload = github.context.payload
+let privateChannel = ""
+let slackUserId= ""
+if(payload.hasOwnProperty('inputs')){
+    privateChannel = payload.inputs.privateChannel
+    slackUserId = payload.inputs.slackUserId
+}
+
 function getColor(status) {
     
     if (status.toLowerCase() === 'success') {
@@ -90,13 +98,7 @@ function generateSlackMessage(text) {
     const { owner, repo } = github.context.repo;
     const status = core.getInput("status");
     const actor = github.context.actor
-    const payload = github.context.payload
-    let privateChannel = ""
-    let slackUserId= ""
-    if(payload.hasOwnProperty('inputs')){
-        privateChannel = payload.inputs.privateChannel
-        slackUserId = payload.inputs.slackUserId
-    }
+
 
     console.log( "generate message sees", slackUserId, privateChannel)
 
