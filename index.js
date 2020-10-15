@@ -10,7 +10,9 @@ const failure_color = '#DFF2800';
 
 const payload = JSON.stringify(github.context.payload, undefined, 2)
 const data = JSON.parse(payload)
-console.log(payload)
+console.log(github.context)
+console.log(github.context.payload)
+console.log(github.context.payload.inputs)
 let privateChannel = ""
 let slackUserId= ""
 if(data.hasOwnProperty('inputs')){
