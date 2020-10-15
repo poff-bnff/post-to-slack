@@ -8,21 +8,6 @@ const sucess_color = '#228C22';
 const cancelled_color = '#FFA900';
 const failure_color = '#DFF2800';
 
-const payload = JSON.stringify(github.context.payload, undefined, 2)
-const data = JSON.parse(payload)
-console.log(github.context)
-console.log(github.context.payload)
-console.log(github.context.payload.inputs)
-let privateChannel = ""
-let slackUserId= ""
-if(data.hasOwnProperty('inputs')){
-  privateChannel = data.inputs.privateChannel
-  slackUserId = data.inputs.slackUserId
-}
-console.log("siia tahan koode")
-console.log(privateChannel)
-console.log(slackUserId)
-
 function getColor(status) {
     
     if (status.toLowerCase() === 'success') {
@@ -105,15 +90,17 @@ function generateSlackMessage(text) {
     const { owner, repo } = github.context.repo;
     const status = core.getInput("status");
     const actor = github.context.actor
-    const inputs = github.context.payload.inputs
-    console.log(inputs.slackUserId)
-    console.log(inputs.privateChannel)
+    const payload = github.context.payload
+    let privateChannel = ""
+    let slackUserId= ""
+    if(payload.hasOwnProperty('inputs')){
+        privateChannel = payload.inputs.privateChannel
+        slackUserId = payload.inputs.slackUserId
+    }
 
-    //console.log( "generate message sees", slackUserId, privateChannel)
+    console.log( "generate message sees", slackUserId, privateChannel)
 
     return {
-        test: inputs.slackUserId,
-        test2: inputs.privateChannel,
         user: slackUserId,
         channel: privateChannel,
         actor: actor,
