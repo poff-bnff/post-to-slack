@@ -74,7 +74,7 @@ function getPMText(status) {
         console.log("pole slackist käivitatud")
     }
     started = `${user}, *alustasid* ${workflow} ehitamist`
-    succeeded = `${user}, sinu muudatused on jõudnud *${workflow}* lehele.`
+    succeeded = `${user}, sinu muudatused on jõudnud ${workflow} lehele.`
     cancelled = `:warning: ${user},  tühistasid ${workflow} ehitamise`
     failure = `<!here> ${user}, sinu alustatud ${workflow} ehitamine *EBAÕNNESTUS*. Saatsin ebaõnnestumisest arendajate kanalisse ka.`
     
