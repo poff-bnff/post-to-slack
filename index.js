@@ -43,7 +43,7 @@ function getText(status) {
         console.log("pole slackist käivitatud")
     }
     started = `${user} *alustas* ${workflow} ehitamist`
-    succeeded = `:white_check_mark: ${user} alustatud ${workflow} ehitamine lõppes *EDUKALT*`
+    succeeded = `${user} alustatud ${workflow} ehitamine lõppes *EDUKALT*`
     cancelled = `:warning: ${user} tühistas ${workflow} ehitamise`
     failure = `:bangbang: ${user} alustatud ${workflow} ehitamine *EBAÕNNESTUS*`
     
@@ -74,7 +74,7 @@ function getPMText(status) {
         console.log("pole slackist käivitatud")
     }
     started = `${user}, *alustasid* ${workflow} ehitamist`
-    succeeded = `:white_check_mark: ${user}, sinu muudatused on jõudnud ${workflow} lehele.`
+    succeeded = `${user}, sinu muudatused on jõudnud ${workflow} lehele.`
     cancelled = `:warning: ${user},  tühistasid ${workflow} ehitamise`
     failure = `:dissapointed_relieved: ${user}, sinu alustatud ${workflow} ehitamine *EBAÕNNESTUS*. Saatsin ebaõnnestumisest arendajate kanalisse ka.`
     
