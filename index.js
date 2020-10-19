@@ -6,7 +6,7 @@ const ToSlack = require("./postToHook");
 const start_color = '#C8F1F3';
 const sucess_color = '#228C22';
 const cancelled_color = '#FFA900';
-const failure_color = '#DFF2800';
+const failure_color = '#DF2800';
 
 const payload = github.context.payload
 let privateChannel = ""
