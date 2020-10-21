@@ -76,7 +76,7 @@ function getPMText(status) {
     started = `${user}, *alustasid* ${workflow} ehitamist`
     succeeded = `${user}, sinu muudatused on jõudnud ${workflow} lehele.`
     cancelled = `:warning: ${user},  tühistasid ${workflow} ehitamise`
-    failure = `:dissapointed_relieved: ${user}, sinu alustatud ${workflow} ehitamine *EBAÕNNESTUS*. Saatsin ebaõnnestumisest arendajate kanalisse ka.`
+    failure = `:disappointed_relieved: ${user}, sinu alustatud ${workflow} ehitamine *EBAÕNNESTUS*. Saatsin ebaõnnestumisest arendajate kanalisse ka.`
     
     if (status.toLowerCase() === 'success') {
         return succeeded;
