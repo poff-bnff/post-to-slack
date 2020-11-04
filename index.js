@@ -8,13 +8,18 @@ const sucess_color = '#228C22';
 const cancelled_color = '#FFA900';
 const failure_color = '#DF2800';
 
+
 const payload = github.context.payload
+
+let job = payload.inputs.job
+
 let privateChannel = ""
 let slackUserId= ""
 if(payload.hasOwnProperty('inputs')){
     privateChannel = payload.inputs.privateChannel
     slackUserId = payload.inputs.slackUserId
 }
+
 
 function getColor(status) {
     
@@ -101,6 +106,7 @@ function generateSlackMessage(text) {
 
 
     console.log( "generate message sees", slackUserId, privateChannel)
+    console.log("see on job", job)
 
     return {
         user: slackUserId,
