@@ -11,7 +11,7 @@ const failure_color = '#DF2800';
 
 const payload = github.context.payload
 
-let job = payload.inputs.job
+// let job = payload.inputs.job
 
 let privateChannel = ""
 let slackUserId= ""
