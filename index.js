@@ -106,7 +106,7 @@ function generateSlackMessage(text) {
 
 
     console.log( "generate message sees", slackUserId, privateChannel)
-    console.log("see on job", job)
+    // console.log("see on job", job)
 
     return {
         user: slackUserId,

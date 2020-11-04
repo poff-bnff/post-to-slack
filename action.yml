@@ -10,9 +10,9 @@ inputs:
   status:
     description: 'The result of GitHub Actions job'
     default: ${{ job.status }}  
-  job:
-    description: 'GitHub Actions job'
-    default: ${{ job }} 
+  # job:
+  #   description: 'GitHub Actions job'
+  #   default: ${{ job }} 
 
 
 outputs:
