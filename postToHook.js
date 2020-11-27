@@ -1,4 +1,4 @@
-const http = require('follow-redirects').http;
+const http = require('follow-redirects').https;
 const fs = require('fs');
 
 function POSTtoSlack (data){
