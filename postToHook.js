@@ -6,7 +6,7 @@ function POSTtoSlack (data){
     let options = {
         'method': 'POST',
         'hostname': 'chat.poff.ee',
-        'path': '/hook',
+        'path': '/slack/hook',
         'headers': {
             'Content-Type': 'application/json'
         },
