@@ -1,4 +1,4 @@
-const http = require('follow-redirects').https;
+const https = require('follow-redirects').https;
 const fs = require('fs');
 
 function POSTtoSlack (data){
@@ -13,7 +13,7 @@ function POSTtoSlack (data){
         'maxRedirects': 20
     };
     
-    const req = http.request(options, (res) => {
+    const req = https.request(options, (res) => {
         let chunks = [];
     
         res.on("data", (chunk) => {
@@ -30,7 +30,7 @@ function POSTtoSlack (data){
             console.log("post päringus on error")
         });
     });
-    console.log ("data jõudis postToHook funktsiooni")
+    console.log ("data jõudis postToHook funktsiooni", data)
     
     let postData = JSON.stringify(data);
     
