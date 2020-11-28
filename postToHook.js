@@ -20,7 +20,7 @@ function POSTtoSlack (data){
             chunks.push(chunk);
         });
     
-        res.on("end", (chunk) => {
+        res.on("end", () => {
             let body = Buffer.concat(chunks);
             console.log(body.toString());
         });

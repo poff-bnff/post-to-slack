@@ -8,6 +8,7 @@ inputs:
     description: 'channel between deploybot and slack user'
     required: false
   status:
+    required: false
     description: 'The result of GitHub Actions job'
     default: ${{ job.status }}  
   # job:
